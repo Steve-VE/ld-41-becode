@@ -5,7 +5,7 @@ let config = {
 }
 
 let upperCards = new Phaser.Game(config);
-upperCards.scene.add("bootState", bootState);
-upperCards.scene.start("bootState");
-// uppercards.scene.add("menu", menu);
-// upperCards.scene.start("menu");
+// upperCards.scene.add("bootState", bootState);
+// upperCards.scene.start("bootState");
+upperCards.scene.add("menu", menuOption);
+upperCards.scene.start("menu");
