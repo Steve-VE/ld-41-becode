@@ -4,12 +4,13 @@ let config = {
     height: 300,
     pixelArt: true,
     zoom: 2,
+    // backgroundColor: "#f00",
     scene: {
         preload: preload,
         create: create,
         update: update
     }
-}
+};
 
 let character;
 
@@ -23,8 +24,9 @@ function preload() {
     );
 }
 function create () {
-    let logoDisplay = this.add.image(400, 300, 'logo');
-
+    let logoDisplay = this.add.image(screenWidth() / 2, screenHeight() / 2, 'logo');
+    logoDisplay.scaleX = 0.5;
+    logoDisplay.scaleY = 0.5;
 
     // Création des animations
     this.anims.create({
@@ -54,9 +56,17 @@ function create () {
         frameRate: 2
     });
 
-    character = this.add.sprite(50, 50, 'zombixel');
+    // character = this.add.sprite(50, 50, 'zombixel');
+    character = this.add.sprite(screenWidth() / 2, screenHeight() * 0.7, 'zombixel');
     character.anims.play('idle');
 }
 function update () {
+}
 
+
+function screenWidth(){
+    return upperCards.canvas.width;
+}
+function screenHeight(){
+    return upperCards.canvas.height;
 }
