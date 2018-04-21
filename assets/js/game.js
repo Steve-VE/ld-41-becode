@@ -14,7 +14,7 @@ function preload() {
     this.load.image("logo","assets/pics/upperLogo.jpg");
 }
 function create () {
-    let logoDiplay = this.add.sprite(80, 0, 'logo');
+    let logoDisplay = this.add.image(400, 300, 'logo');
 }
 function update () {
 
