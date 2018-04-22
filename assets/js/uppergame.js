@@ -30,13 +30,15 @@ let uppergame = {
         // playerCharacter.lifePoints = remainingPV;
 
         // Chargement des decks
-        this.playerDeck = characters[selectedCharacter].deck;
-        this.IADeck = characters[randomCharacter].deck;
+        this.playerDeck = Deck.getCopyOf(characters[selectedCharacter].deck);
+        // this.IADeck = Deck.getCopyOf(characters[randomCharacter].deck);
 
-        for(let nbreCard = 7; nbreCard > 0; nbreCard--){
-            this.playerHand.push(this.playerDeck.draw);
+        let cardSprites = [];
+        for(let nbreCard = 0; nbreCard < 7; nbreCard++){
+            this.playerHand.push(this.playerDeck.draw());
+            cardSprites[nbreCard] = this.add.sprite(34 + (55 * nbreCard), 42, 'cards' );
+            cardSprites[nbreCard].anims.play('cards-' + this.playerHand[nbreCard].name);
         }
-
     },
     update: function update () {
         // healthBarIA.scaleX = (IACharacter.lifePoints * 0.01);

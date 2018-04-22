@@ -53,6 +53,5 @@ function damage () {
 
 
 function onChrome(){
-    console.log(navigator.userAgent.indexOf("Chrome"));
     return (navigator.userAgent.indexOf("Chrome") != -1);
 }

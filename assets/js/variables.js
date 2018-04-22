@@ -20,14 +20,14 @@ let lifePoints;
 let characters = {
     zombixel: {
         "lifePoints" : 100,
-        "deck" : Deck.getExampleDeck()
+        deck: Deck.getExampleDeck()
     },
     thanatalys: {
         "lifePoints" : 100,
-        "deck" : Deck.getExampleDeck()
+        deck: Deck.getExampleDeck()
     },
     zanersky: {
         "lifePoints" : 100,
-        "deck" : Deck.getExampleDeck()
+        deck: Deck.getExampleDeck()
     }
 };
