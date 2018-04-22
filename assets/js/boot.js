@@ -45,11 +45,14 @@ let bootState = {
             repeat: -1
         });
 
-        // character = this.add.sprite(50, 50, 'zombixel');
-        character = this.add.sprite(screenWidth() / 2, screenHeight() * 0.7, 'zombixel');
-        character.anims.play('idle');
+        character = this.add.sprite(screenWidth() * 0.33, screenHeight() * 0.7, 'zombixel');
+        character.anims.play('punch');
+        character2 = this.add.sprite(screenWidth() * 0.5, screenHeight() * 0.7, 'zombixel');
+        character2.anims.play('idle');
+        character3 = this.add.sprite(screenWidth() * 0.66, screenHeight() * 0.7, 'zombixel');
+        character3.anims.play('damage');
     },
     update : function update () {
 
     }
-}
+};
