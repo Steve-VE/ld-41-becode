@@ -79,8 +79,8 @@ let uppergame = {
         character = this.add.sprite(screenWidth() * 0.45, screenHeight() * 0.865, 'zombixel');
         characterReverse = this.add.sprite(screenWidth() * 0.55, screenHeight() * 0.865, 'zanersky');
         characterReverse.scaleX = -1;
-        character.anims.play('idle');
-        characterReverse.anims.play('zanidle');
+        character.anims.play('damage');
+        characterReverse.anims.play('zanpunch');
     },
     update: function update () {
 
