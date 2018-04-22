@@ -52,10 +52,10 @@ let bootState = {
         bootTheme = this.sound.add("menuTheme");
         bootTheme.play();
         bootTheme.volume = 0.03;
-        timedEvent = this.time.addEvent({delay: 5000, callback: loadMenu, callbackScope: this});
-        function loadMenu () {
-            upperCards.scene.start("menu");
-        }
+        // timedEvent = this.time.addEvent({delay: 5000, callback: loadMenu, callbackScope: this});
+        // function loadMenu () {
+        //     upperCards.scene.start("menu");
+        // }
 
     },
     update : function update () {

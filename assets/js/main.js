@@ -8,8 +8,16 @@ let config = {
 
 let upperCards = new Phaser.Game(config);
 upperCards.scene.add("bootState", bootState);
+<<<<<<< HEAD
 // upperCards.scene.start("bootState");
 upperCards.scene.add("menu", menuOption);
 upperCards.scene.add("uppergame", uppergame);
 upperCards.scene.add("characSelection", characSelection);
 upperCards.scene.start("bootState");
+=======
+upperCards.scene.start("bootState");
+// upperCards.scene.add("menu", menuOption);
+// upperCards.scene.start("menu");
+// upperCards.scene.add("uppergame", uppergame);
+// upperCards.scene.start("uppergame");
+>>>>>>> fd1470d66bd10fed1e73dbce64a225683c3b5804
