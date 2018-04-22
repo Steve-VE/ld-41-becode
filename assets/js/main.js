@@ -4,6 +4,7 @@ let config = {
     height: 300,
     pixelArt: true,
     zoom: 2
+    // scene: [bootState, menuOption, characSelection, uppergame]
 };
 
 let upperCards = new Phaser.Game(config);
