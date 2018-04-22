@@ -10,7 +10,7 @@ let bootState = {
         this.load.spritesheet('zanersky', 'assets/pics/zanersky_spritesheet.png',
         { frameWidth: 64, frameHeight: 64 });
         this.load.spritesheet('thanatalys', 'assets/pics/thanatalys_spritesheet.png',
-        { frameWidth: 64, frameHeight: 64 })
+        { frameWidth: 64, frameHeight: 64 });
     },
     create : function create () {
 
@@ -52,4 +52,4 @@ let bootState = {
     update : function update () {
 
     }
-}
+};
