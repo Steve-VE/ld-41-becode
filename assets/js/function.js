@@ -1,5 +1,5 @@
 function changeMusic(musicName, soundSource = "soundManager"){ // Fonction à appeler pour changer de musique
-    upperCards.scene.getScene(soundSource).switchTo = musicName;
+    upperCards.scene.getScene(soundSource).changeMusic( musicName );
 }
 
 function screenWidth(p_percent = 1){
@@ -49,4 +49,10 @@ function setupSpritesheet(scene, animationsProperties, animationsPrefixe = [""])
 function damage () {
     lifePoints = (playerCharacter.lifePoints - hits);
     
+}
+
+
+function onChrome(){
+    console.log(navigator.userAgent.indexOf("Chrome"));
+    return (navigator.userAgent.indexOf("Chrome") != -1);
 }
