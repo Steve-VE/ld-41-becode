@@ -10,7 +10,7 @@ function screenHeight(p_percent = 1){
 }
 
 function setupSpritesheet(scene, animationsProperties, animationsPrefixe = [""]){
-    console.log(scene);
+    // console.log(scene);
     for(let i = 0; i < animationsPrefixe.length; i++){
         let currentPrefixe = animationsPrefixe[i];
         // console.log("-- Character : " + currentPrefixe);
@@ -19,7 +19,7 @@ function setupSpritesheet(scene, animationsProperties, animationsPrefixe = [""])
             let currentAnimation = animationsProperties[j];
             // console.log("-- Animations : " + currentAnimation.key);
             let animationName = currentPrefixe + "-" + currentAnimation.key;
-            console.log("\t-- " + animationName);
+            // console.log("\t-- " + animationName);
 
             let animationData = null;
 

@@ -30,7 +30,6 @@ let bootState = {
             "assets/pics/cards_spritesheet.png",
             { frameWidth: 64, frameHeight: 80 }
         );
-        console.log(cardsSpritesheet);
     },
     create : function create () {
         // Création des animations

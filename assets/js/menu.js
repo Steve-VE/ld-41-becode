@@ -34,7 +34,7 @@ let menuOption = {
         menu3.anims.play('menu3');
         menu3.scaleX = 0.2;
         menu3.scaleY = 0.2;
-
+        
         menu3.on('pointerdown', function(){
             console.log("hello");}
         );
@@ -43,8 +43,6 @@ let menuOption = {
             // upperCards.scene.launch("uppergame");
             upperCards.scene.sleep("menu");
             upperCards.scene.start("characSelection");
-            // soundManager.changeMusic("menuTheme");
-            console.log(upperCards);
             changeMusic("menuTheme");
         });
     },
