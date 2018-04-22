@@ -13,7 +13,9 @@ let config = {
 };
 
 let upperCards = new Phaser.Game(config);
-upperCards.scene.add("bootState", bootState);
-upperCards.scene.start("bootState");
+// upperCards.scene.add("bootState", bootState);
+// upperCards.scene.start("bootState");
 // upperCards.scene.add("menu", menuOption);
 // upperCards.scene.start("menu");
+upperCards.scene.add("uppergame", uppergame);
+upperCards.scene.start("uppergame");
