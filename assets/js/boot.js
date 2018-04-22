@@ -11,6 +11,7 @@ let bootState = {
         { frameWidth: 64, frameHeight: 64 });
         this.load.spritesheet('thanatalys', 'assets/pics/thanatalys_spritesheet.png',
         { frameWidth: 64, frameHeight: 64 });
+        this.load.audio('menuTheme', 'assets/audio/menuTheme.wav');
     },
     create : function create () {
 
@@ -48,6 +49,14 @@ let bootState = {
         character2.anims.play('zanidle');
         // character3 = this.add.sprite(screenWidth(0.6), screenHeight(0.7), 'thanatalys');
         // character3.anims.play('thanidle');
+        bootTheme = this.sound.add("menuTheme");
+        bootTheme.play();
+        bootTheme.volume = 0.03;
+        timedEvent = this.time.addEvent({delay: 5000, callback: loadMenu, callbackScope: this});
+        function loadMenu () {
+            upperCards.scene.start("menu");
+        }
+
     },
     update : function update () {
 
