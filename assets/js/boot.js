@@ -11,12 +11,12 @@ let bootState = {
             { frameWidth: 64, frameHeight: 64 }
         );
         this.load.spritesheet(
-            'zanersky', 
+            'zanersky',
             'assets/pics/zanersky_spritesheet.png',
             { frameWidth: 64, frameHeight: 64 }
         );
         this.load.spritesheet(
-            'thanatalys', 
+            'thanatalys',
             'assets/pics/thanatalys_spritesheet.png',
             { frameWidth: 70, frameHeight: 70 }
         );
@@ -113,7 +113,7 @@ let bootState = {
             upperCards.scene.start("menu");
         }
 
-    },  
+    },
     update : function update () {
 
     }

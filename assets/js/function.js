@@ -46,3 +46,7 @@ function setupSpritesheet(scene, animationsProperties, animationsPrefixe = [""])
     }
 }
 
+function damage () {
+    lifePoints = (playerCharacter.lifePoints - hits);
+    
+}
