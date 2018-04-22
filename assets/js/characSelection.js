@@ -11,9 +11,10 @@ let characSelection = {
         { frameWidth: 64, frameHeight: 64 });
     },
     create: function create() {
-
+        console.log("ok");
     },
     update: function update() {
-
+        
+        console.log("ok");
     }
-}
+};
