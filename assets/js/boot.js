@@ -118,7 +118,7 @@ let bootState = {
         // timedEvent = this.time.addEvent({delay: 5000, callback: loadMenu, callbackScope: this});
         timedEvent = this.time.addEvent({delay: 2000, callback: loadMenu, callbackScope: this});
         function loadMenu () {
-            upperCards.scene.start("menu");
+            upperCards.scene.start("characSelection");
         }
 
     },

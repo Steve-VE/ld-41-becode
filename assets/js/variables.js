@@ -9,6 +9,9 @@ let zanKick;
 let zanBlock;
 let zanDamage;
 let bootTheme;
+let selectedCharacter;
+let IACharacter;
+let lifePoints;
 let zombixel = {
     "lifePoints" : 100,
     "deck" :null,

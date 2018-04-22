@@ -43,7 +43,7 @@ let menuOption = {
             // menuTheme.destroy();
             // console.log(upperCards.scene);
             // upperCards.scene.launch("uppergame");
-            upperCards.scene.launch("characSelection");
+            upperCards.scene.start("characSelection");
             // if(!goToCharacterSelection){
                 //     goToCharacterSelection = true;
                 // }
