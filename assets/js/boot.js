@@ -25,12 +25,12 @@ let bootState = {
             "assets/pics/start_menu.png",
             { frameWidth: 648, frameHeight: 250 }
         );
-        // Découpe des spritesheets
-       
-
-
-        // Load AUDIO
-        this.load.audio('menuTheme', 'assets/audio/menuTheme.wav');
+        let cardsSpritesheet = this.load.spritesheet(
+            "cards",
+            "assets/pics/cards_spritesheet.png",
+            { frameWidth: 64, frameHeight: 80 }
+        );
+        console.log(cardsSpritesheet);
     },
     create : function create () {
         // Création des animations
@@ -61,41 +61,36 @@ let bootState = {
             }
         ];
 
-        for(let i = 0; i < charactersName.length; i++){
-            let currentCharacter = charactersName[i];
-            console.log("-- Character : " + currentCharacter);
-            
-            for(let j = 0; j < animations.length; j++){
-                let currentAnimation = animations[j];
-                console.log("-- Animations : " + currentAnimation.key);
-                let animationName = currentCharacter + "-" + currentAnimation.key;
-                console.log("\t-- " + animationName);
+        setupSpritesheet(this, animations, ['zombixel', 'zanersky', 'thanatalys']);
 
-                let animationData = null;
-
-                if(typeof(currentAnimation.frames) == "object"){
-
-                    animationData = this.anims.create({
-                        key: animationName,
-                        frames: this.anims.generateFrameNumbers( currentCharacter, { 
-                            start: currentAnimation.frames.start, 
-                            end: currentAnimation.frames.end 
-                        }),
-                        frameRate: 4,
-                        repeat: currentAnimation.repeat
-                    });
-
-                    console.log(currentAnimation.key);
-                } 
-                else{
-                    animationData = this.anims.create({
-                        key: animationName,
-                        frames: [{key: currentCharacter, frame: currentAnimation.frames}],
-                        frameRate: 4
-                    });
-                }
+        animations = [
+            {
+                key: 'left',
+                frames: 0
+            },
+            {
+                key: 'up',
+                frames: 1
+            },
+            {
+                key: 'right',
+                frames: 2
+            },
+            {
+                key: 'down',
+                frames: 3
+            },
+            {
+                key: 'punch',
+                frames: 4
+            },
+            {
+                key: 'kick',
+                frames: 5
             }
-        }
+        ];
+        setupSpritesheet(this, animations, ['cards']);
+  
         let backBoot = this.add.image(400,0,"white_background");
         backBoot.scaleX = 4;
         backBoot.scaleY = 4;
@@ -112,12 +107,10 @@ let bootState = {
         character3.displayOriginY = character3.displayHeight;
         character3.anims.play('thanatalys-idle');
 
-        // bootTheme = this.sound.add("menuTheme");
-        // bootTheme.play();
-        // bootTheme.volume = 0.03;
         // timedEvent = this.time.addEvent({delay: 5000, callback: loadMenu, callbackScope: this});
-        timedEvent = this.time.addEvent({delay: 2000, callback: loadMenu, callbackScope: this});
+        timedEvent = this.time.addEvent({delay: 1000, callback: loadMenu, callbackScope: this});
         function loadMenu () {
+            upperCards.scene.sleep("bootState");
             upperCards.scene.start("menu");
         }
 

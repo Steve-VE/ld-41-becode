@@ -39,28 +39,16 @@ let menuOption = {
             console.log("hello");}
         );
 
-        menu1.on('pointerdown', function () {
-            // menuTheme.destroy();
-            // console.log(upperCards.scene);
+        menu1.on('pointerdown', function (currScene = this) {
             // upperCards.scene.launch("uppergame");
-            upperCards.scene.launch("characSelection");
-            // if(!goToCharacterSelection){
-                //     goToCharacterSelection = true;
-                // }
-            });
-        // timedEvent = this.time.addEvent({delay: 7000, callback: musicDelay, callbackScope: this});
-        // function musicDelay () {
-            //     menuTheme = this.sound.add("menuTheme");
-            //     menuTheme.play({loop: true});
-            //     menuTheme.volume = 0.03;
-            // }
+            upperCards.scene.sleep("menu");
+            upperCards.scene.start("characSelection");
+            // soundManager.changeMusic("menuTheme");
+            console.log(upperCards);
+            changeMusic("menuTheme");
+        });
     },
 
     update : function update() {
-        // if(goToCharacterSelection){
-        //     console.log("Changement");
-        //     // menuOption.destroy();
-        //     upperCards.scene.start("characSelection");
-    // }
     }
 };
