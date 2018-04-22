@@ -1,6 +1,6 @@
-function screenWidth(){
-    return upperCards.canvas.width;
+function screenWidth(p_percent = 1){
+    return Math.floor(upperCards.canvas.width * p_percent);
 }
-function screenHeight(){
-    return upperCards.canvas.height;
+function screenHeight(p_percent = 1){
+    return Math.floor(upperCards.canvas.height * p_percent);
 }
