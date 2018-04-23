@@ -108,9 +108,16 @@ let uppergame = {
                     endMessage = this.add.sprite(screenWidth(0.5), screenHeight(0.5), 'endButton').setInteractive();
                     looseButton = endMessage.anims.play("endButton-loose");
                     looseButton.on("pointerdown", function(){
-                        upperCards.scene.kill('uppergame');
-                        upperCards.scene.start('characSelection');
-
+                        upperCards.destroy(true);
+                        upperCards = new Phaser.Game(config);
+                        upperCards.scene.add("bootState", bootState);
+                        upperCards.scene.add("soundManager", soundManager);
+                        upperCards.scene.add("menu", menuOption);
+                        upperCards.scene.add("characSelection", characSelection);
+                        upperCards.scene.add("uppergame", uppergame);
+                        upperCards.scene.start("bootState");
+                        upperCards.scene.start("soundManager");
+                        loose = false;
                     });
 
                 }
@@ -121,6 +128,24 @@ let uppergame = {
 
             if(this.opponent.needToDraw()){
                 this.opponent.draw(this, false);
+                //test loose
+                if (loose == true) {
+                    endMessage = this.add.sprite(screenWidth(0.5), screenHeight(0.5), 'endButton').setInteractive();
+                    looseButton = endMessage.anims.play("endButton-win");
+                    looseButton.on("pointerdown", function(){
+                        upperCards.destroy(true);
+                        upperCards = new Phaser.Game(config);
+                        upperCards.scene.add("bootState", bootState);
+                        upperCards.scene.add("soundManager", soundManager);
+                        upperCards.scene.add("menu", menuOption);
+                        upperCards.scene.add("characSelection", characSelection);
+                        upperCards.scene.add("uppergame", uppergame);
+                        upperCards.scene.start("bootState");
+                        upperCards.scene.start("soundManager");
+                        loose = false;
+                    });
+
+                }
             }
         }
         else if(this.state == 1){ // Sélection des cartes
