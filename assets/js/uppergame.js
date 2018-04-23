@@ -26,10 +26,6 @@ let uppergame = {
                     this.state++;
                 }
             }
-<<<<<<< HEAD
-            else if(this.state == 1){
-
-=======
             else if(this.state == 1){ // Phase de sélection des cartes
                 // if(this.player.selectedCard.length > 1 && this.opponent.selectedCard.length > 1){
                 if(this.player.selectedCard.length > 1){
@@ -38,7 +34,6 @@ let uppergame = {
             }
             else if(this.state == 2){ // Traitement des infos
                 this.state++;
->>>>>>> 68264573c4d70d520595aa290e79b467378cc16c
             }
             else if(this.state == 3){ // On exécute les animations + calcul des dégâts
                 this.opponent.lifepoint -= this.player.attack.strength;
