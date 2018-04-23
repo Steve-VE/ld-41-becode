@@ -5,10 +5,8 @@ class Player{
     constructor(p_name, p_deck = null){
         this.name = p_name;
         this.characterData = characters[this.name];
-        console.log(this.characterData);
 
         this.lifepoint = this.characterData.lifepoint;
-        console.log(this.lifepoint);
         this.maxLifepoint = this.lifepoint;
 
         this.getADeck(p_deck);
@@ -45,13 +43,9 @@ class Player{
 
     draw(scene, addSprite = true){ // Pioche une carte
         let newCard = this.deck.draw();
-        // console.log();
 
         if(newCard != false){ // Si le joueur a bel et bien tiré une carte de son deck
             this.hand.push( newCard );
-            
-            console.log("- " + this.name + " vient de piocher ceci : ");
-            console.log(newCard);
             
             if(addSprite){
                 let cardIndex = (this.hand.length - 1);
@@ -61,7 +55,7 @@ class Player{
             }
         }
         else{ // Plus de carte dans le deck du joueur
-            console.log("- " + this.name + " ne peut plus piocher.");
+
         }
     }
 
@@ -140,6 +134,15 @@ class Player{
 
 
     choseSomethingToPlay(){ // Fonction qui permet de faire prendre une décision au joueur IA
+        let wantToPlay = Math.floor(Math.random() * this.hand.length);
+        if(wantToPlay < 2){
+            wantToPlay++;
+        }
 
+        for(let i = 0; i < wantToPlay; i++){
+                let randIndex = Math.floor(Math.random() * this.hand.length);
+                this.hand[randIndex].selected = true;
+                this.selectedCard.push( this.hand.splice(randIndex, 1)[0] );
+        }
     }
 }

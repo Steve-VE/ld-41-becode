@@ -4,8 +4,8 @@ let uppergame = {
 
         this.player = new Player(selectedCharacter);
 
-        // let characterPool = ["zombixel", "zanersky", "thanatalys"];
-        let characterPool = ["zombixel", "zombixel", "zombixel"];
+        let characterPool = ["zombixel", "zanersky", "thanatalys"];
+        // let characterPool = ["zombixel", "zombixel", "zombixel"];
         let randIndex = Math.floor(Math.random() * 3);
         let randomCharacter = characterPool[randIndex];
 
@@ -28,21 +28,21 @@ let uppergame = {
                 }
             }
             else if(this.state == 1){ // Phase de sélection des cartes
-                // if(this.player.selectedCard.length > 1 && this.opponent.selectedCard.length > 1){
-                if(this.player.selectedCard.length > 1){
+                if(this.opponent.selectedCard.length == 0){
+                    this.opponent.choseSomethingToPlay();
+                }
+
+                if(this.player.selectedCard.length >= 1 && this.opponent.selectedCard.length >= 1){
+                // if(this.player.selectedCard.length > 1){
                     this.state++;
                 }
             }
             else if(this.state == 2){ // Traitement des infos
-                this.opponent.choseSomethingToPlay();
                 this.state++;
             }
             else if(this.state == 3){ // On exécute les animations + calcul des dégâts
                 this.opponent.lifepoint -= this.player.attack.strength;
-                this.player.lifepoint -= this.opponent.attack.strength;
-
-                console.log(this.player.attack);
-                console.log(this.opponent.lifepoint);
+                this.player.lifepoint -= this.opponent.attack.strength; 
                 this.state++;
             }
 
@@ -76,6 +76,7 @@ let uppergame = {
             if(gameObject.name == "confirmButton"){
                 if(parent.state == 1) {
                     parent.nextState();
+
                 }
             }
         });
