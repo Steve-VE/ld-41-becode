@@ -53,9 +53,14 @@ let uppergame = {
         };
     },
     create: function create () {
-        backgroundArena = this.add.image(400, 130, "backgroundArena");
-        backgroundArena.scaleX = 0.45;
-        backgroundArena.scaleY = 0.35;
+        // backgroundArena = this.add.image(400, 130, "backgroundArena");
+        // backgroundArena.scaleX = 0.45;
+        // backgroundArena.scaleY = 0.35;
+        if (selectedCharacter == "thanatalys") {
+            backgroundArena = this.add.image(200,220, "thanaBackground");
+            backgroundArena.scaleX = 0.49;
+            backgroundArena.scaleY = 0.49;
+        }
 
         playerCharacter = addSprite(this, screenWidth(0.42), screenHeight(0.97), selectedCharacter, "-idle");
         IACharacter = addSprite(this, screenWidth(0.58), screenHeight(0.97), this.opponent.name, "-idle");
