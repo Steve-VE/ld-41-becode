@@ -20,7 +20,7 @@ class Player{
 
     getADeck(p_deck = null){
         if(p_deck == null){
-            if(this.characterData != null){   
+            if(this.characterData != null){
                 this.deck = Deck.getCopyOf(this.characterData.deck);
             }
         }

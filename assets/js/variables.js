@@ -1,5 +1,4 @@
 let bootTheme;
-
 let selectedCharacter;
 let IACharacter;
 let lifePoints;

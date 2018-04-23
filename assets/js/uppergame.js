@@ -27,7 +27,7 @@ let uppergame = {
                 }
             }
             else if(this.state == 1){
-                
+
             }
             else if(this.state == 2){
 
@@ -61,7 +61,7 @@ let uppergame = {
         lifebarIA.displayOriginX = lifebarIA.displayWidth;
         lifebarBackIA.displayOriginX = lifebarBackIA.displayWidth;
         lifebarBackPlayer.displayOriginX = 0;
-        
+
         confirmButton = this.add.sprite(screenWidth(0.45), screenHeight(0.50), 'thanatalys').setInteractive();
         confirmButton.anims.play('thanatalys-damage');
         confirmButton.name = "confirmButton";
@@ -74,11 +74,7 @@ let uppergame = {
             }
         });
 
-        //HealthBar
-        // playerCharacter.lifePoints;
-        // IACharacter.lifePoints;
-        // playerCharacter.lifePoints = remainingPV;
-        // Gestion camera (TEST)
+
         this.camera = this.cameras.main.setSize(400, 300);
     },
     update: function update () {
@@ -93,7 +89,7 @@ let uppergame = {
                 this.nextState();
             }
 
-            if(this.opponent.length < 7){
+            if(this.opponent.needToDraw()){
                 this.opponent.draw(this);
             }
         }
