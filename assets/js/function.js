@@ -22,16 +22,12 @@ function screenHeight(p_percent = 1){
 }
 
 function setupSpritesheet(scene, animationsProperties, animationsPrefixe = [""]){
-    // console.log(scene);
     for(let i = 0; i < animationsPrefixe.length; i++){
         let currentPrefixe = animationsPrefixe[i];
-        // console.log("-- Character : " + currentPrefixe);
 
         for(let j = 0; j < animationsProperties.length; j++){
             let currentAnimation = animationsProperties[j];
-            // console.log("-- Animations : " + currentAnimation.key);
             let animationName = currentPrefixe + "-" + currentAnimation.key;
-            // console.log("\t-- " + animationName);
 
             let animationData = null;
 
@@ -63,7 +59,6 @@ function damage ( hits, previousLifepoints = playerCharacter.lifePoints) {
     return lifePoints;
 
 }
-
 
 function onChrome(){
     return (navigator.userAgent.indexOf("Chrome") != -1);

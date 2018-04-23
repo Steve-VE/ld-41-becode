@@ -1,3 +1,5 @@
+let debugState = true;
+
 let uppergame = {
     preload: function preload () {
         this.load.image("backgroundArena", "assets/pics/backgroundArena.png");
@@ -118,17 +120,47 @@ let uppergame = {
             this.nextState();
         }
         else if(this.state == 3){ // Animation + dégats
-            console.log(this.playerCharacter.anims.currentAnim.key);
-            
-            if(this.playerCharacter.anims.currentAnim.key == this.player.name + "-idle"){
-                if(this.player.animationQueue[0] != "undefined"){
-                    console.log(">> " + this.player.name + this.player.animationQueue[0]);
-                    this.playerCharacter.anims.play(this.player.name + this.player.animationQueue[0]);
+            let playerName = this.player.name;
+            let opponentName = this.opponent.name;
+            let gotoNext = [false, false];
 
+            if(this.player.animationQueue.length > 0 && this.player.animationQueue[0] != "undefined"){
+                if(this.playerCharacter.anims.currentAnim.key == playerName + "-idle"){
+                    this.playerCharacter.anims.play(playerName + this.player.animationQueue[0]);
                     this.player.animationQueue.splice(0, 1);
+                    
+                    if(debugState){
+                        this.playerCharacter.on('animationcomplete', function(){
+                            this.anims.play(playerName + "-idle");
+                            debugState = false;
+                        });
+                    }
                 }
             }
-            // this.nextState();
+            else{
+                gotoNext[0] = true;
+            }
+
+            if(this.opponent.animationQueue.length > 0 && this.opponent.animationQueue[0] != "undefined"){
+                if(this.IACharacter.anims.currentAnim.key == opponentName + "-idle"){
+                    this.IACharacter.anims.play(opponentName + this.opponent.animationQueue[0]);
+                    this.opponent.animationQueue.splice(0, 1);
+                    
+                    if(debugState){
+                        this.IACharacter.on('animationcomplete', function(){
+                            this.anims.play(opponentName + "-idle");
+                            debugState = false;
+                        });
+                    }
+                }
+            }
+            else{
+                gotoNext[1] = true;
+            }
+
+            if(gotoNext[0] && gotoNext[1]){
+                this.nextState();
+            }
         }
 
         this.player.update(this);

@@ -54,19 +54,19 @@ let bootState = {
             },
             {
                 key: 'punch',
-                frames: {start: 0, end: 2}
+                frames: 2
             },
             {
                 key: 'kick',
-                frames: {start: 0, end: 3}
+                frames: 3
             },
             {
                 key: 'block',
-                frames: {start: 0, end: 4}
+                frames: 4
             },
             {
                 key: 'damage',
-                frames: {start: 0, end: 5}
+                frames: 5
             }
         ];
         let lifebarState = [
