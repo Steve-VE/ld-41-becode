@@ -3,7 +3,10 @@ let bootState = {
         // Load IMAGES
         this.load.image("logo","assets/pics/upperLogo.png");
         this.load.image("white_background", "assets/pics/white.png");
-        this.load.image("thanaBackground", "assets/pics/Fond_Thanatalys.png");
+        this.load.image("thanaBackground", "assets/pics/fond_thanatalys.png");
+        this.load.image("zombiBackground", "assets/pics/fond_zombixel.png");
+        this.load.image("zanBackground", "assets/pics/fond_zanersky.png");
+        this.load.image("characBackground", "assets/pics/fond_menu.png");
 
         // Load SPRITESHEET
         this.load.spritesheet(

@@ -2,15 +2,15 @@ let characSelection = {
     preload: function preload() {
     },
     create: function create() {
-        white_background = this.add.image(400,0,"white_background");
-        white_background.scaleX = 4;
-        white_background.scaleY = 4;
+        white_background = this.add.image(200,130,"characBackground");
+        white_background.scaleX = 0.46;
+        white_background.scaleY = 0.467;
 
         for(let i = 0; i < 3; i++){
             let character = addSprite(
                 this, 
                 screenWidth(0.3 + (0.2 * i)), 
-                screenHeight(0.8),
+                screenHeight(0.9),
                 characters[i],
                 "-idle"
             );

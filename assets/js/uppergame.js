@@ -58,6 +58,16 @@ let uppergame = {
             backgroundArena.scaleX = 0.49;
             backgroundArena.scaleY = 0.49;
         }
+        else if (selectedCharacter == "zombixel") {
+            backgroundArena = this.add.image(200,220, "zombiBackground");
+            backgroundArena.scaleX = 0.49;
+            backgroundArena.scaleY = 0.49;
+        }
+        else if (selectedCharacter == "zanersky") {
+            backgroundArena = this.add.image(200,250, "zanBackground");
+            backgroundArena.scaleX = 0.49;
+            backgroundArena.scaleY = 0.49;
+        }
 
         playerCharacter = addSprite(this, screenWidth(0.42), screenHeight(0.97), selectedCharacter, "-idle");
         IACharacter = addSprite(this, screenWidth(0.58), screenHeight(0.97), this.opponent.name, "-idle");
