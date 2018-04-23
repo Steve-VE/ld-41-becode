@@ -1,16 +1,30 @@
-
+let id_player_count = 0;
 
 class Player{
 
     constructor(p_name, p_deck = null){
         this.name = p_name;
         this.characterData = characters[this.name];
+        console.log(this.characterData);
 
-        this.lifepoint = this.characterData.lifepoints;
+        this.lifepoint = this.characterData.lifepoint;
+        console.log(this.lifepoint);
+        this.maxLifepoint = this.lifepoint;
 
         this.getADeck(p_deck);
+        this.discardPile = new Deck();
 
         this.hand = [];
+        this.selectedCard = [];
+
+        this.lifebarBack = null;
+
+        this.id = id_player_count++;
+
+        this.attack = {
+            strength: 0,
+            speed: 0
+        };
     }
 
     needToDraw(){ // Retourne 'true' si le joueur a besoin de piocher
@@ -29,15 +43,87 @@ class Player{
         }
     }
 
-    draw(scene){ // Pioche une carte
+    draw(scene, addSprite = true){ // Pioche une carte
         let cardIndex = this.hand.length;
-        this.hand.push(this.deck.draw());
-        this.hand[ cardIndex ].addSprite(scene, 34 + (55 * cardIndex), 42);
+        this.hand.push( this.deck.draw() );
+
+        if(addSprite){
+            this.hand[ cardIndex ].addSprite(scene, 0, 0);
+            this.hand[ cardIndex ].defineTarget( 34 + (55 * cardIndex), 42);
+            this.hand[ cardIndex ].setDepth( this.hand.length );
+        }
     }
 
-    update(){
-        for(let i = 0; i < this.hand.length; i++){
-            this.hand[i].update();
+    update(scene){
+        if(this.liveBar == null){
+            // console.log("Bar : " + this.id)
+            let posx = (this.id == 0)? 20 : (screenWidth() - 20);
+            let posy = screenHeight(0.415);
+            let originx;
+            
+            this.liveBar = {};
+            this.liveBar.background = scene.add.sprite(posx, posy, 'lifebar');
+            this.liveBar.background.anims.play("lifebar-backLife");
+            this.liveBar.background.displayOriginX = 0;
+            
+            this.liveBar.status = scene.add.sprite(posx, posy, 'lifebar');
+            this.liveBar.status.anims.play("lifebar-status");
+            this.liveBar.status.displayOriginX = 0;
+            
+            if(this.id != 0){
+                this.liveBar.background.displayOriginX = this.liveBar.background.displayWidth;
+                this.liveBar.status.displayOriginX = this.liveBar.status.displayWidth;
+            }
         }
+        else{
+            this.liveBar.status.scaleX = (this.lifepoint * 0.01);
+        }
+
+        for(let i = (this.hand.length - 1); i >= 0; i--){
+            let singleCard = this.hand[i];
+            singleCard.update();
+            singleCard.setDepth(i);
+
+            if(singleCard.selected){
+                this.selectedCard.push( this.hand.splice(i, 1)[0] );
+            }
+            else{
+                singleCard.defineTarget(34 + (55 * i), 42);
+            }
+        }
+        
+        for(let i = (this.selectedCard.length - 1); i >= 0; i--){
+            let singleCard = this.selectedCard[i];
+            singleCard.update();
+            singleCard.setDepth(this.selectedCard.length - i);
+            
+            if(singleCard.selected == false){
+                this.hand.push( this.selectedCard.splice(i, 1)[0] );
+            }
+            else{
+                singleCard.defineTarget(40, 120 + (i * 20));
+            }
+        }
+    }
+
+    prepareAttack(){ // Défini une attaque en fonction des cartes sélectionnées
+        let strength = 0;
+        let speed = 0;
+
+        for(let i = (this.selectedCard.length - 1); i >= 0; i--){
+            let currentCard = this.selectedCard[i];
+            strength += currentCard.strength;
+            speed += currentCard.speed;
+
+            currentCard.destroy();
+            this.selectedCard.splice(i, 1);
+        }
+
+        this.attack.strength = strength;
+        this.attack.speed = speed;
+    }
+
+    drawLifeBar(px, py){
+        lifebarPlayer.scaleX = (selectedCharacter.lifePoints * 0.01);
     }
 }

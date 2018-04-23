@@ -67,7 +67,7 @@ let bootState = {
                 frames: 0
             },
             {
-                key: "lifeStatus",
+                key: "status",
                 frames: 1
             }
         ];
