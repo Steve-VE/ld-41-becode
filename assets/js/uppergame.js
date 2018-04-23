@@ -53,11 +53,18 @@ let uppergame = {
         };
     },
     create: function create () {
-        // backgroundArena = this.add.image(400, 130, "backgroundArena");
-        // backgroundArena.scaleX = 0.45;
-        // backgroundArena.scaleY = 0.35;
         if (selectedCharacter == "thanatalys") {
             backgroundArena = this.add.image(200,220, "thanaBackground");
+            backgroundArena.scaleX = 0.49;
+            backgroundArena.scaleY = 0.49;
+        }
+        else if (selectedCharacter == "zombixel") {
+            backgroundArena = this.add.image(200,220, "zombiBackground");
+            backgroundArena.scaleX = 0.49;
+            backgroundArena.scaleY = 0.49;
+        }
+        else if (selectedCharacter == "zanersky") {
+            backgroundArena = this.add.image(200,250, "zanBackground");
             backgroundArena.scaleX = 0.49;
             backgroundArena.scaleY = 0.49;
         }
