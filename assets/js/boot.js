@@ -3,6 +3,10 @@ let bootState = {
         // Load IMAGES
         this.load.image("logo","assets/pics/upperLogo.png");
         this.load.image("white_background", "assets/pics/white.png");
+        this.load.image("thanaBackground", "assets/pics/fond_thanatalys.png");
+        this.load.image("zombiBackground", "assets/pics/fond_zombixel.png");
+        this.load.image("zanBackground", "assets/pics/fond_zanersky.png");
+        this.load.image("characBackground", "assets/pics/fond_menu.png");
 
         // Load SPRITESHEET
         this.load.spritesheet(
@@ -30,6 +34,12 @@ let bootState = {
             "assets/pics/cards_spritesheet.png",
             { frameWidth: 64, frameHeight: 80 }
         );
+        this.load.spritesheet("lifebar", "assets/pics/lifebar.png",
+            { frameWidth: 100, frameHeight: 20}
+        );
+        this.load.spritesheet("confirmAttack", "assets/pics/cardValidator-spritesheet.png",
+            {frameWidth: 60, frameHeight: 20}
+        );
     },
     create : function create () {
         // Création des animations
@@ -44,22 +54,43 @@ let bootState = {
             },
             {
                 key: 'punch',
-                frames: 2
+                frames: {start: 0, end: 2}
             },
             {
                 key: 'kick',
-                frames: 3
+                frames: {start: 0, end: 3}
             },
             {
                 key: 'block',
-                frames: 4
+                frames: {start: 0, end: 4}
             },
             {
                 key: 'damage',
-                frames: 5
+                frames: {start: 0, end: 5}
             }
         ];
-
+        let lifebarState = [
+            {
+                key: "backLife",
+                frames: 0
+            },
+            {
+                key: "status",
+                frames: 1
+            }
+        ];
+        let confirmAttack = [
+            {
+                key: "buttonUp",
+                frames: 0
+            },
+            {
+                key: "buttonDown",
+                frames: 1
+            }
+        ];
+        setupSpritesheet(this, lifebarState, ['lifebar']);
+        setupSpritesheet(this, confirmAttack, ['confirmAttack']);
         setupSpritesheet(this, animations, ['zombixel', 'zanersky', 'thanatalys']);
 
         animations = [
@@ -89,7 +120,7 @@ let bootState = {
             }
         ];
         setupSpritesheet(this, animations, ['cards']);
-  
+
         let backBoot = this.add.image(400,0,"white_background");
         backBoot.scaleX = 4;
         backBoot.scaleY = 4;

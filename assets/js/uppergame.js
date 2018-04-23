@@ -2,13 +2,17 @@ let uppergame = {
     preload: function preload () {
         this.load.image("backgroundArena", "assets/pics/backgroundArena.png");
 
-        this.playerDeck = null;
-        this.IADeck = null;
-        this.playerHand = [];
-        this.IAHand = [];
+        this.player = new Player(selectedCharacter);
 
-        /** Le state va définir l'étape de jeu : 
-         * 
+        let characterPool = ["zombixel", "zanersky", "thanatalys"];
+        // let characterPool = ["zombixel", "zombixel", "zombixel"];
+        let randIndex = Math.floor(Math.random() * 3);
+        let randomCharacter = characterPool[randIndex];
+
+        this.opponent = new Player(randomCharacter);
+
+        /** Le state va définir l'étape de jeu :
+         *
          *      - 0 : On pioche des cartes et on commence un nouveau tour
          *      - 1 : Les joueurs choississent les cartes à jouer
          *      - 2 : Les cartes sélectionnez sont retirées de la main et mise en zone d'action
@@ -16,58 +20,110 @@ let uppergame = {
          *      - 3 : Exécution des coups
          */
         this.state = 0;
-        console.log(this);
+
+        this.nextState = () => { // Fonction à appeller lorsque l'on veut passer à la prochaine étape
+            if(this.state == 0){ // Phase de pioche
+                if(this.player.needToDraw() == false && this.opponent.needToDraw() == false){
+                    this.state++;
+                }
+            }
+            else if(this.state == 1){ // Phase de sélection des cartes
+                if(this.opponent.selectedCard.length == 0){
+                    this.opponent.choseSomethingToPlay();
+                }
+
+                if(this.player.selectedCard.length >= 1 && this.opponent.selectedCard.length >= 1){
+                // if(this.player.selectedCard.length > 1){
+                    this.state++;
+                }
+            }
+            else if(this.state == 2){ // Traitement des infos
+                this.state++;
+            }
+            else if(this.state == 3){ // On exécute les animations + calcul des dégâts
+                this.opponent.lifepoint -= this.player.attack.strength;
+                this.player.lifepoint -= this.opponent.attack.strength; 
+                this.state++;
+            }
+
+            if(this.state > 3){
+                this.state = 0;
+            }
+            console.log("- ETAPE : " + this.state);
+        };
     },
     create: function create () {
-        backgroundArena = this.add.image(400,130, "backgroundArena");
-        backgroundArena.scaleX = 0.45;
-        backgroundArena.scaleY = 0.35;
-        playerCharacter = this.add.sprite(screenWidth(0.45), screenHeight(0.97), selectedCharacter);
-        playerCharacter.displayOriginY = character.displayHeight;
-        playerCharacter.anims.play(selectedCharacter +'-idle');
-        confirmButton = this.add.sprite(screenWidth(0.45), screenHeight(0.50), 'thanatalys').setInteractive();
-        confirmButton.anims.play('thanatalys-damage');
-        confirmButton.on("pointerdown", function() {});
-
-        // Permet de tirer un personnage au hasard pour l'IA (TEMPORAIRE !!!)
-        let characterPool = ["zombixel", "zanersky", "thanatalys"];
-        let randIndex = Math.floor(Math.random() * 3);
-        let randomCharacter = characterPool[randIndex];
-
-        IACharacter = this.add.sprite(screenWidth(0.57), screenHeight(0.97), randomCharacter);
-        IACharacter.scaleX = -1;
-        IACharacter.displayOriginY = IACharacter.displayHeight;
-        IACharacter.anims.play(randomCharacter + '-idle');
-        //HealthBar
-        // playerCharacter.lifePoints;
-        // IACharacter.lifePoints;
-        // playerCharacter.lifePoints = remainingPV;
-
-        // Chargement des decks
-        this.playerDeck = Deck.getCopyOf(characters[selectedCharacter].deck);
-        this.IADeck = Deck.getCopyOf(characters[randomCharacter].deck);
-
-        let cardSprites = [];
-        for(let nbreCard = 0; nbreCard < 7; nbreCard++){
-            this.playerHand.push(this.playerDeck.draw());
-            this.playerHand[nbreCard].addSprite(this, 34 + (55 * nbreCard), 42);
-            // cardSprites[nbreCard] = this.add.sprite(34 + (55 * nbreCard), 42, 'cards' );
-            // cardSprites[nbreCard].anims.play('cards-' + this.playerHand[nbreCard].name);
+        if (selectedCharacter == "thanatalys") {
+            backgroundArena = this.add.image(200,220, "thanaBackground");
+            backgroundArena.scaleX = 0.49;
+            backgroundArena.scaleY = 0.49;
         }
-        let cardSelected = [];
-        console.log(this.playerHand);
+        else if (selectedCharacter == "zombixel") {
+            backgroundArena = this.add.image(200,220, "zombiBackground");
+            backgroundArena.scaleX = 0.49;
+            backgroundArena.scaleY = 0.49;
+        }
+        else if (selectedCharacter == "zanersky") {
+            backgroundArena = this.add.image(200,250, "zanBackground");
+            backgroundArena.scaleX = 0.49;
+            backgroundArena.scaleY = 0.49;
+        }
 
-        // Gestion camera
+        playerCharacter = addSprite(this, screenWidth(0.42), screenHeight(0.97), selectedCharacter, "-idle");
+        IACharacter = addSprite(this, screenWidth(0.58), screenHeight(0.97), this.opponent.name, "-idle");
+        IACharacter.scaleX = -1;
+
+        //Référence à la scene actuel, pour pouvoir la cibler là où ce n'est pas possible à l'aide d'un this
+        parent = this;
+     
+        
+        confirmButton = this.add.sprite(screenWidth(0.85), screenHeight(0.33), 'confirmAttack').setInteractive();
+        confirmButton.anims.play('confirmAttack-buttonUp');
+        confirmButton.name = "confirmButton";
+        // confirmButton.setTint("0xaaaaaa");
+
+        this.input.on('gameobjectdown', function (pointer, gameObject){
+            if(gameObject.name == "confirmButton"){
+                if(parent.state == 1) {
+                    parent.nextState();
+
+                }
+            }
+        });
+
+        // Gestion camera (TEST)
         this.camera = this.cameras.main.setSize(400, 300);
-        console.log(this.camera);
-
     },
     update: function update () {
-        // healthBarIA.scaleX = (IACharacter.lifePoints * 0.01);
-        // healthBarPlayer.scaleX = (playerCharacter.lifePoints * 0.01);
+        // lifebarIA.scaleX = (IACharacter.lifePoints * 0.01);
+        // lifebarPlayer.scaleX = (selectedCharacter.lifePoints * 0.01);
 
-        for(let i = 0; i < this.playerHand.length; i++){
-            this.playerHand[i].update();
+        if(this.state == 0){ // Pioche
+            if(this.player.needToDraw()){
+                this.player.draw(this);
+            }
+            else{
+                this.nextState();
+            }
+
+            if(this.opponent.needToDraw()){
+                this.opponent.draw(this, false);
+            }
         }
+        else if(this.state == 1){ // Sélection des cartes
+
+        }
+        else if(this.state == 2){ // Traitement des infos
+            this.player.prepareAttack();
+            this.opponent.prepareAttack();
+            this.nextState();
+        }
+        else if(this.state == 3){ // Animation + dégats
+            
+            this.nextState();
+        }
+
+        this.player.update(this);
+        this.opponent.update(this);
     }
 };

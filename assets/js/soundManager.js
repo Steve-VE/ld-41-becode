@@ -1,5 +1,5 @@
 let currentMusic;
-let musicVolume = 0.3;
+let musicVolume = 0.03;
 
 let soundManager = {
     switchTo: null,
