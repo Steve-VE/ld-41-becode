@@ -7,6 +7,7 @@ let bootState = {
         this.load.image("zombiBackground", "assets/pics/fond_zombixel.png");
         this.load.image("zanBackground", "assets/pics/fond_zanersky.png");
         this.load.image("characBackground", "assets/pics/fond_menu.png");
+        this.load.image("choose", "assets/pics/choose.png");
 
         // Load SPRITESHEET
         this.load.spritesheet(

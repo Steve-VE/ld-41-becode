@@ -5,7 +5,9 @@ let characSelection = {
         white_background = this.add.image(200,130,"characBackground");
         white_background.scaleX = 0.46;
         white_background.scaleY = 0.467;
-
+        choose = this.add.image(187,90, "choose");
+        choose.scaleX = 0.2;
+        choose.scaleY = 0.2;
         for(let i = 0; i < 3; i++){
             let character = addSprite(
                 this, 
