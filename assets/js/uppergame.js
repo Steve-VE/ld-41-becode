@@ -10,8 +10,8 @@ let uppergame = {
 
         this.opponent = new Player(randomCharacter);
 
-        /** Le state va définir l'étape de jeu : 
-         * 
+        /** Le state va définir l'étape de jeu :
+         *
          *      - 0 : On pioche des cartes et on commence un nouveau tour
          *      - 1 : Les joueurs choississent les cartes à jouer
          *      - 2 : Les cartes sélectionnez sont retirées de la main et mise en zone d'action
@@ -48,6 +48,20 @@ let uppergame = {
 
         //Référence à la scene actuel, pour pouvoir la cibler là où ce n'est pas possible à l'aide d'un this
         parent = this;
+        lifebarBackPlayer = this.add.sprite(screenWidth(0.10), screenHeight(0.415), 'lifebar');
+        lifebarBackPlayer.anims.play("lifebar-backLife");
+        lifebarBackIA = this.add.sprite(screenWidth(0.90), screenHeight(0.415), 'lifebar');
+        lifebarBackIA.anims.play("lifebar-backLife");
+        lifebarPlayer = this.add.sprite(screenWidth(0.10), screenHeight(0.415), 'lifebar');
+        lifebarPlayer.anims.play("lifebar-lifeStatus");
+        lifebarIA = this.add.sprite(screenWidth(0.90), screenHeight(0.415), 'lifebar');
+        lifebarIA.anims.play("lifebar-lifeStatus");
+
+        lifebarPlayer.displayOriginX = 0;
+        lifebarIA.displayOriginX = lifebarIA.displayWidth;
+        lifebarBackIA.displayOriginX = lifebarBackIA.displayWidth;
+        lifebarBackPlayer.displayOriginX = 0;
+        
         confirmButton = this.add.sprite(screenWidth(0.45), screenHeight(0.50), 'thanatalys').setInteractive();
         confirmButton.anims.play('thanatalys-damage');
         confirmButton.name = "confirmButton";
@@ -64,14 +78,12 @@ let uppergame = {
         // playerCharacter.lifePoints;
         // IACharacter.lifePoints;
         // playerCharacter.lifePoints = remainingPV;
-        let cardSprites = [];
-
         // Gestion camera (TEST)
         this.camera = this.cameras.main.setSize(400, 300);
     },
     update: function update () {
-        // healthBarIA.scaleX = (IACharacter.lifePoints * 0.01);
-        // healthBarPlayer.scaleX = (playerCharacter.lifePoints * 0.01);
+        lifebarIA.scaleX = (IACharacter.lifePoints * 0.01);
+        lifebarPlayer.scaleX = (selectedCharacter.lifePoints * 0.01);
 
         if(this.state == 0){ // Pioche
             if(this.player.needToDraw()){
