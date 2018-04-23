@@ -6,33 +6,21 @@ let characSelection = {
         white_background.scaleX = 4;
         white_background.scaleY = 4;
 
-        character = this.add.sprite(screenWidth(0.3), screenHeight(0.8), 'zombixel').setInteractive();
-        character.displayOriginY = character.displayHeight;
-        character.anims.play('zombixel-idle');
-
-        character2 = this.add.sprite(screenWidth(0.5), screenHeight(0.8), 'zanersky').setInteractive();
-        character2.displayOriginY = character2.displayHeight;
-        character2.anims.play('zanersky-idle');
-
-        character3 = this.add.sprite(screenWidth(0.7), screenHeight(0.8), 'thanatalys').setInteractive();
-        character3.displayOriginY = character3.displayHeight;
-        character3.anims.play('thanatalys-idle');
-
-        character.on("pointerdown", function() {
-            selectedCharacter = "zombixel";
-            upperCards.scene.sleep("characSelection");
-            upperCards.scene.start('uppergame');
-        });
-        character2.on("pointerdown", function() {
-            selectedCharacter = "zanersky";
-            upperCards.scene.sleep("characSelection");
-            upperCards.scene.start('uppergame');
-        });
-        character3.on("pointerdown", function() {
-            selectedCharacter = "thanatalys";
-            upperCards.scene.sleep("characSelection");
-            upperCards.scene.start('uppergame');
-        });
+        for(let i = 0; i < 3; i++){
+            let character = addSprite(
+                this, 
+                screenWidth(0.3 + (0.2 * i)), 
+                screenHeight(0.8),
+                characters[i],
+                "-idle"
+            );
+            character.setInteractive();
+            character.on("pointerdown", function() {
+                selectedCharacter = characters[i];
+                upperCards.scene.sleep("characSelection");
+                upperCards.scene.start('uppergame');
+            });
+        }
     },
     update: function update() {
     }

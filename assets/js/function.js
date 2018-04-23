@@ -1,3 +1,15 @@
+function addSprite(scene, px, py, spriteName, animationName = ""){
+    let newSprite = scene.add.sprite(px, py, spriteName);
+    newSprite.displayOriginX = Math.round(newSprite.displayWidth / 2);
+    newSprite.displayOriginY = newSprite.displayHeight;
+
+    if(animationName != ""){
+        newSprite.anims.play(spriteName + animationName);
+    }
+
+    return newSprite;
+}
+
 function changeMusic(musicName, soundSource = "soundManager"){ // Fonction à appeler pour changer de musique
     upperCards.scene.getScene(soundSource).changeMusic( musicName );
 }
