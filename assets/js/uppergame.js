@@ -13,17 +13,14 @@ let uppergame = {
         IACharacter.scaleX = -1;
         IACharacter.displayOriginY = IACharacter.displayHeight;
         IACharacter.anims.play('thanatalys-idle');
-        //HealthBar
-        playerCharacter.lifePoints;
-        IACharacter.lifePoints;
-        playerCharacter.lifePoints = remainingPV;
+
 
 
 
     },
     update: function update () {
-        healthBarIA.scaleX = (IACharacter.lifePoints * 0.01);
-        healthBarPlayer.scaleX = (playerCharacter.lifePoints * 0.01);
+        // healthBarIA.scaleX = (IACharacter.lifePoints * 0.01);
+        // healthBarPlayer.scaleX = (playerCharacter.lifePoints * 0.01);
 
     }
 };
