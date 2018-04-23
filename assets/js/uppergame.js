@@ -6,6 +6,17 @@ let uppergame = {
         this.IADeck = null;
         this.playerHand = [];
         this.IAHand = [];
+
+        /** Le state va définir l'étape de jeu : 
+         * 
+         *      - 0 : On pioche des cartes et on commence un nouveau tour
+         *      - 1 : Les joueurs choississent les cartes à jouer
+         *      - 2 : Les cartes sélectionnez sont retirées de la main et mise en zone d'action
+         *            On calcule la vitesse et la force des coups
+         *      - 3 : Exécution des coups
+         */
+        this.state = 0;
+        console.log(this);
     },
     create: function create () {
         backgroundArena = this.add.image(400,130, "backgroundArena");
@@ -31,17 +42,28 @@ let uppergame = {
 
         // Chargement des decks
         this.playerDeck = Deck.getCopyOf(characters[selectedCharacter].deck);
-        // this.IADeck = Deck.getCopyOf(characters[randomCharacter].deck);
+        this.IADeck = Deck.getCopyOf(characters[randomCharacter].deck);
 
         let cardSprites = [];
         for(let nbreCard = 0; nbreCard < 7; nbreCard++){
             this.playerHand.push(this.playerDeck.draw());
-            cardSprites[nbreCard] = this.add.sprite(34 + (55 * nbreCard), 42, 'cards' );
-            cardSprites[nbreCard].anims.play('cards-' + this.playerHand[nbreCard].name);
+            this.playerHand[nbreCard].addSprite(this, 34 + (55 * nbreCard), 42);
+            // cardSprites[nbreCard] = this.add.sprite(34 + (55 * nbreCard), 42, 'cards' );
+            // cardSprites[nbreCard].anims.play('cards-' + this.playerHand[nbreCard].name);
         }
+        console.log(this.playerHand);
+
+        // Gestion camera
+        this.camera = this.cameras.main.setSize(400, 300);
+        console.log(this.camera);
+
     },
     update: function update () {
         // healthBarIA.scaleX = (IACharacter.lifePoints * 0.01);
         // healthBarPlayer.scaleX = (playerCharacter.lifePoints * 0.01);
+
+        for(let i = 0; i < this.playerHand.length; i++){
+            this.playerHand[i].update();
+        }
     }
 };

@@ -107,7 +107,7 @@ let bootState = {
         character3.anims.play('thanatalys-idle');
 
         // timedEvent = this.time.addEvent({delay: 5000, callback: loadMenu, callbackScope: this});
-        timedEvent = this.time.addEvent({delay: 1000, callback: loadMenu, callbackScope: this});
+        timedEvent = this.time.addEvent({delay: 300, callback: loadMenu, callbackScope: this});
         function loadMenu () {
             upperCards.scene.sleep("bootState");
             upperCards.scene.start("menu");

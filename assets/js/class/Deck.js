@@ -36,7 +36,7 @@ class Deck{
             }
 
             for(nbre; nbre > 0; nbre--){
-                exampleDeck.add(cards[i]);
+                exampleDeck.add(cards[i].copy());
             }
         }
 
