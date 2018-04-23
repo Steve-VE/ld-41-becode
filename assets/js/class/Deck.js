@@ -10,11 +10,19 @@ class Deck{
     get(cardIndex){
            return this.cardPool[cardIndex];
     }
+    getCopy(cardIndex){
+           return this.cardPool[cardIndex].copy();
+    }
 
     draw(){
-        let randIndex = Math.floor(Math.random(this.cardPool.length));
-        let newCard = this.cardPool.splice(randIndex, 1);
-        return newCard[0];
+        if(this.cardPool.length > 0){
+            let randIndex = Math.floor(Math.random(this.cardPool.length));
+            let newCard = this.cardPool.splice(randIndex, 1);
+            return newCard[0];
+        }
+        else{
+            return false;
+        }
     }
 
     shuffle(c_cardPool = this.cardPool) {
@@ -23,6 +31,9 @@ class Deck{
             [c_cardPool[i], c_cardPool[j]] = [c_cardPool[j], c_cardPool[i]];
         }
         this.cardPool = c_cardPool;
+
+        console.log("- Deck mélangé...");
+        console.log(this);
     }
 
     static getExampleDeck(){
@@ -47,7 +58,7 @@ class Deck{
         let copyDeck = new Deck();
 
         for(let i = 0; i < srcDeck.cardPool.length; i++){
-            copyDeck.add( srcDeck.get(i) );
+            copyDeck.add( srcDeck.getCopy(i) );
         }
         copyDeck.shuffle();
         return copyDeck;
