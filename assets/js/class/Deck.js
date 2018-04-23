@@ -31,9 +31,6 @@ class Deck{
             [c_cardPool[i], c_cardPool[j]] = [c_cardPool[j], c_cardPool[i]];
         }
         this.cardPool = c_cardPool;
-
-        console.log("- Deck mélangé...");
-        console.log(this);
     }
 
     static getExampleDeck(){
