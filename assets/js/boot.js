@@ -7,6 +7,7 @@ let bootState = {
         this.load.image("zombiBackground", "assets/pics/fond_zombixel.png");
         this.load.image("zanBackground", "assets/pics/fond_zanersky.png");
         this.load.image("characBackground", "assets/pics/fond_menu.png");
+        this.load.image("choose", "assets/pics/choose.png");
 
         // Load SPRITESHEET
         this.load.spritesheet(
@@ -39,6 +40,9 @@ let bootState = {
         );
         this.load.spritesheet("confirmAttack", "assets/pics/cardValidator-spritesheet.png",
             {frameWidth: 60, frameHeight: 20}
+        );
+        this.load.spritesheet("endButton", "assets/pics/endbutton.png",
+            {frameWidth: 150, frameHeight: 100}
         );
     },
     create : function create () {
@@ -89,8 +93,19 @@ let bootState = {
                 frames: 1
             }
         ];
+        let endButton = [
+            {
+                key: "loose",
+                frames: 0
+            },
+            {
+                key: "win",
+                frames: 1
+            }
+        ];
         setupSpritesheet(this, lifebarState, ['lifebar']);
         setupSpritesheet(this, confirmAttack, ['confirmAttack']);
+        setupSpritesheet(this, endButton, ['endButton']);
         setupSpritesheet(this, animations, ['zombixel', 'zanersky', 'thanatalys']);
 
         animations = [
