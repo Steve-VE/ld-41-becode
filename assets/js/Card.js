@@ -6,6 +6,7 @@ class Card{
         this.speed = p_speed;
         this.img = p_img;
         this.text = p_text;
+        this.selected = false;
     }
 
     addSprite(scene){

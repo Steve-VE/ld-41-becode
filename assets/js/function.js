@@ -1,5 +1,5 @@
 function changeMusic(musicName, soundSource = "soundManager"){ // Fonction à appeler pour changer de musique
-    upperCards.scene.getScene(soundSource).switchTo = musicName;
+    upperCards.scene.getScene(soundSource).changeMusic( musicName );
 }
 
 function screenWidth(p_percent = 1){
@@ -14,7 +14,7 @@ function setupSpritesheet(scene, animationsProperties, animationsPrefixe = [""])
     for(let i = 0; i < animationsPrefixe.length; i++){
         let currentPrefixe = animationsPrefixe[i];
         // console.log("-- Character : " + currentPrefixe);
-        
+
         for(let j = 0; j < animationsProperties.length; j++){
             let currentAnimation = animationsProperties[j];
             // console.log("-- Animations : " + currentAnimation.key);
@@ -27,14 +27,14 @@ function setupSpritesheet(scene, animationsProperties, animationsPrefixe = [""])
 
                 animationData = scene.anims.create({
                     key: animationName,
-                    frames: scene.anims.generateFrameNumbers( currentPrefixe, { 
-                        start: currentAnimation.frames.start, 
-                        end: currentAnimation.frames.end 
+                    frames: scene.anims.generateFrameNumbers( currentPrefixe, {
+                        start: currentAnimation.frames.start,
+                        end: currentAnimation.frames.end
                     }),
                     frameRate: 4,
                     repeat: currentAnimation.repeat
                 });
-            } 
+            }
             else{
                 animationData = scene.anims.create({
                     key: animationName,
@@ -46,7 +46,13 @@ function setupSpritesheet(scene, animationsProperties, animationsPrefixe = [""])
     }
 }
 
-function damage () {
-    lifePoints = (playerCharacter.lifePoints - hits);
-    
+function damage ( hits, previousLifepoints = playerCharacter.lifePoints) {
+    let lifePoints = (previousLifepoints - hits);
+    return lifePoints;
+
+}
+
+
+function onChrome(){
+    return (navigator.userAgent.indexOf("Chrome") != -1);
 }

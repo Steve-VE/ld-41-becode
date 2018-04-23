@@ -9,6 +9,7 @@ let soundManager = {
         // Load AUDIO
         this.load.audio('boot', 'assets/audio/boot.wav');
         this.load.audio('menuTheme', 'assets/audio/menuTheme.wav');
+        this.fadeVolume = onChrome();
     },
 
     create: function create () {
@@ -17,33 +18,33 @@ let soundManager = {
         this.switchTo = "boot";
         currentMusic.play({loop: true});
         currentMusic.volume = musicVolume;
+
+        this.changeMusic = function(name){
+            this.switchTo = name;
+        };
     },
 
     update: function update () {
         if(this.switchTo != this.currentMusicName){
-            if(currentMusic.volume > 0.01){
+            if(this.fadeVolume && currentMusic.volume > 0.01){
                 currentMusic.volume -= 0.01;
             }
             else{
                 currentMusic.destroy();
                 currentMusic = this.sound.add(this.switchTo);
                 currentMusic.play({loop: true});
-                currentMusic.volume = 0;
+
+                if(this.fadeVolume){
+                    currentMusic.volume = 0;
+                }
+
                 this.currentMusicName = this.switchTo;
             }
         }
-        else{
+        else if(this.fadeVolume){
             if(currentMusic.volume < musicVolume){
                 currentMusic.volume += 0.01;
             }
         }
-    },
-
-    changeMusic: function changeMusic(name){
-        this.switchTo = name;
-            // currentMusic.destroy();
-            // currentMusic = this.sound.add(name);
-            // currentMusic.play({loop: true});
-            // currentMusic.volume = musicVolume;
     }
 };
