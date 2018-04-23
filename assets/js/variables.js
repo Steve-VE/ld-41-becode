@@ -17,16 +17,17 @@ let selectedCharacter;
 let IACharacter;
 let lifePoints;
 
-
-let zombixel = {
-    "lifePoints" : 100,
-    "deck" : deckTest
-};
-let thanatalys = {
-    "lifePoints" : 100,
-    "deck" : deckTest
-};
-let zanersky = {
-    "lifePoints" : 100,
-    "deck" : deckTest
+let characters = {
+    zombixel: {
+        "lifePoints" : 100,
+        deck: Deck.getExampleDeck()
+    },
+    thanatalys: {
+        "lifePoints" : 100,
+        deck: Deck.getExampleDeck()
+    },
+    zanersky: {
+        "lifePoints" : 100,
+        deck: Deck.getExampleDeck()
+    }
 };

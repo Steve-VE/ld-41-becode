@@ -15,20 +15,18 @@ class Card{
     }
 }
 
-
 let cards = {
     0: new Card("left", 1, 2, "Input Left"),
-    left: this[0],
     1: new Card("up", 1, 2, "Input Up"),
-    up: this[1],
     2: new Card("right", 1, 2, "Input Right"),
-    right: this[2],
     3: new Card("down", 1, 2, "Input Down"),
-    down: this[3],
     4: new Card("punch", 1, 2, "Punch !"),
-    punch: this[4],
-    5: new Card("kick", 1, 2, "Kick !"),
-    kick: this[5]
+    5: new Card("kick", 1, 2, "Kick !")
 };
 
-console.log(cards[0]);
+cards.left = cards[0];
+cards.up = cards[1];
+cards.right = cards[2];
+cards.down = cards[3];
+cards.punch = cards[4];
+cards.kick = cards[5];
