@@ -93,6 +93,7 @@ let uppergame = {
 
         // Gestion camera (TEST)
         this.camera = this.cameras.main.setSize(400, 300);
+        
     },
     update: function update () {
         // lifebarIA.scaleX = (IACharacter.lifePoints * 0.01);
@@ -101,6 +102,17 @@ let uppergame = {
         if(this.state == 0){ // Pioche
             if(this.player.needToDraw()){
                 this.player.draw(this);
+                //test loose
+                if (loose == true) {
+                    endMessage = this.add.sprite(screenWidth(0.5), screenHeight(0.5), 'endButton').setInteractive();
+                    looseButton = endMessage.anims.play("endButton-loose");
+                    looseButton.on("pointerdown", function(){
+                        upperCards.scene.kill('uppergame');
+                        upperCards.scene.start('characSelection');
+
+                    });
+
+                }
             }
             else{
                 this.nextState();

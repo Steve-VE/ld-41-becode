@@ -3,6 +3,7 @@ let selectedCharacter;
 let IACharacter;
 let lifePoints;
 let confirmButton;
+let loose;
 let characters = {
     0: "zombixel",
     zombixel: {

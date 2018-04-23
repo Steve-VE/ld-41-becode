@@ -55,7 +55,7 @@ class Player{
             }
         }
         else{ // Plus de carte dans le deck du joueur
-
+            loose = true;
         }
     }
 
