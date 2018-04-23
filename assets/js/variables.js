@@ -16,7 +16,7 @@ for(let i = 0; i < 6; i++){ // Conception d'un deck de test (6 fois chaque flèc
 let selectedCharacter;
 let IACharacter;
 let lifePoints;
-
+let confirmButton;
 let characters = {
     zombixel: {
         "lifePoints" : 100,

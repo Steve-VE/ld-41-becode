@@ -1,10 +1,10 @@
 let currentMusic;
-let musicVolume = 0.03;
+let musicVolume = 0.3;
 
 let soundManager = {
     switchTo: null,
     currentMusicName: null,
-    
+
     preload: function preload () {
         // Load AUDIO
         this.load.audio('boot', 'assets/audio/boot.wav');
@@ -33,7 +33,7 @@ let soundManager = {
                 currentMusic.destroy();
                 currentMusic = this.sound.add(this.switchTo);
                 currentMusic.play({loop: true});
-                
+
                 if(this.fadeVolume){
                     currentMusic.volume = 0;
                 }

@@ -14,6 +14,9 @@ let uppergame = {
         playerCharacter = this.add.sprite(screenWidth(0.45), screenHeight(0.97), selectedCharacter);
         playerCharacter.displayOriginY = character.displayHeight;
         playerCharacter.anims.play(selectedCharacter +'-idle');
+        confirmButton = this.add.sprite(screenWidth(0.45), screenHeight(0.50), 'thanatalys').setInteractive();
+        confirmButton.anims.play('thanatalys-damage');
+        confirmButton.on("pointerdown", function() {});
 
         // Permet de tirer un personnage au hasard pour l'IA (TEMPORAIRE !!!)
         let characterPool = ["zombixel", "zanersky", "thanatalys"];
@@ -39,6 +42,8 @@ let uppergame = {
             cardSprites[nbreCard] = this.add.sprite(34 + (55 * nbreCard), 42, 'cards' );
             cardSprites[nbreCard].anims.play('cards-' + this.playerHand[nbreCard].name);
         }
+        let cardSelected = [];
+
     },
     update: function update () {
         // healthBarIA.scaleX = (IACharacter.lifePoints * 0.01);
