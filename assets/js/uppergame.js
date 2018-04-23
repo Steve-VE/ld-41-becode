@@ -62,13 +62,12 @@ let uppergame = {
             backgroundArena.scaleY = 0.49;
         }
 
-        playerCharacter = addSprite(this, screenWidth(0.42), screenHeight(0.97), selectedCharacter, "-idle");
-        IACharacter = addSprite(this, screenWidth(0.58), screenHeight(0.97), this.opponent.name, "-idle");
-        IACharacter.scaleX = -1;
+        this.playerCharacter = addSprite(this, screenWidth(0.42), screenHeight(0.97), selectedCharacter, "-idle");
+        this.IACharacter = addSprite(this, screenWidth(0.58), screenHeight(0.97), this.opponent.name, "-idle");
+        this.IACharacter.scaleX = -1;
 
         //Référence à la scene actuel, pour pouvoir la cibler là où ce n'est pas possible à l'aide d'un this
         parent = this;
-     
         
         confirmButton = this.add.sprite(screenWidth(0.85), screenHeight(0.33), 'confirmAttack').setInteractive();
         confirmButton.anims.play('confirmAttack-buttonUp');
@@ -112,8 +111,17 @@ let uppergame = {
             this.nextState();
         }
         else if(this.state == 3){ // Animation + dégats
+            console.log(this.playerCharacter.anims.currentAnim.key);
             
-            this.nextState();
+            if(this.playerCharacter.anims.currentAnim.key == this.player.name + "-idle"){
+                if(this.player.animationQueue[0] != "undefined"){
+                    console.log(">> " + this.player.name + this.player.animationQueue[0]);
+                    this.playerCharacter.anims.play(this.player.name + this.player.animationQueue[0]);
+
+                    this.player.animationQueue.splice(0, 1);
+                }
+            }
+            // this.nextState();
         }
 
         this.player.update(this);

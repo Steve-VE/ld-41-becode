@@ -23,12 +23,13 @@ class Player{
             strength: 0,
             speed: 0
         };
+
+        this.animationQueue = [];
     }
 
     needToDraw(){ // Retourne 'true' si le joueur a besoin de piocher
         return (this.hand.length < 7);
     }
-
 
     getADeck(p_deck = null){
         if(p_deck == null){
@@ -112,6 +113,7 @@ class Player{
     }
 
     prepareAttack(){ // Défini une attaque en fonction des cartes sélectionnées
+        this.animationQueue = []; // On vide la dernière suite d'animations
         let strength = 0;
         let speed = 0;
 
@@ -119,6 +121,12 @@ class Player{
             let currentCard = this.selectedCard[i];
             strength += currentCard.strength;
             speed += currentCard.speed;
+
+            console.log(currentCard.name);
+
+            if(currentCard.name == "kick" || currentCard.name == "punch"){
+                this.animationQueue.push("-" + currentCard.name);
+            }
 
             currentCard.destroy();
             this.selectedCard.splice(i, 1);
@@ -132,7 +140,6 @@ class Player{
         lifebarPlayer.scaleX = (selectedCharacter.lifePoints * 0.01);
     }
 
-
     choseSomethingToPlay(){ // Fonction qui permet de faire prendre une décision au joueur IA
         let wantToPlay = Math.floor(Math.random() * this.hand.length);
         if(wantToPlay < 2){
@@ -140,9 +147,9 @@ class Player{
         }
 
         for(let i = 0; i < wantToPlay; i++){
-                let randIndex = Math.floor(Math.random() * this.hand.length);
-                this.hand[randIndex].selected = true;
-                this.selectedCard.push( this.hand.splice(randIndex, 1)[0] );
+            let randIndex = Math.floor(Math.random() * this.hand.length);
+            this.hand[randIndex].selected = true;
+            this.selectedCard.push( this.hand.splice(randIndex, 1)[0] );
         }
     }
 }
