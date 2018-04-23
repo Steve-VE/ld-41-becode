@@ -4,7 +4,8 @@ let uppergame = {
 
         this.player = new Player(selectedCharacter);
 
-        let characterPool = ["zombixel", "zanersky", "thanatalys"];
+        // let characterPool = ["zombixel", "zanersky", "thanatalys"];
+        let characterPool = ["zombixel", "zombixel", "zombixel"];
         let randIndex = Math.floor(Math.random() * 3);
         let randomCharacter = characterPool[randIndex];
 
@@ -33,6 +34,7 @@ let uppergame = {
                 }
             }
             else if(this.state == 2){ // Traitement des infos
+                this.opponent.choseSomethingToPlay();
                 this.state++;
             }
             else if(this.state == 3){ // On exécute les animations + calcul des dégâts

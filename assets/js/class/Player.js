@@ -44,13 +44,24 @@ class Player{
     }
 
     draw(scene, addSprite = true){ // Pioche une carte
-        let cardIndex = this.hand.length;
-        this.hand.push( this.deck.draw() );
+        let newCard = this.deck.draw();
+        // console.log();
 
-        if(addSprite){
-            this.hand[ cardIndex ].addSprite(scene, 0, 0);
-            this.hand[ cardIndex ].defineTarget( 34 + (55 * cardIndex), 42);
-            this.hand[ cardIndex ].setDepth( this.hand.length );
+        if(newCard != false){ // Si le joueur a bel et bien tiré une carte de son deck
+            this.hand.push( newCard );
+            
+            console.log("- " + this.name + " vient de piocher ceci : ");
+            console.log(newCard);
+            
+            if(addSprite){
+                let cardIndex = (this.hand.length - 1);
+                this.hand[ cardIndex ].addSprite(scene, 0, 0);
+                this.hand[ cardIndex ].defineTarget( 34 + (55 * cardIndex), 42);
+                this.hand[ cardIndex ].setDepth( this.hand.length );
+            }
+        }
+        else{ // Plus de carte dans le deck du joueur
+            console.log("- " + this.name + " ne peut plus piocher.");
         }
     }
 
@@ -125,5 +136,10 @@ class Player{
 
     drawLifeBar(px, py){
         lifebarPlayer.scaleX = (selectedCharacter.lifePoints * 0.01);
+    }
+
+
+    choseSomethingToPlay(){ // Fonction qui permet de faire prendre une décision au joueur IA
+
     }
 }
