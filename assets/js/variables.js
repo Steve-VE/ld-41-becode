@@ -1,23 +1,23 @@
-let zombixIdle;
-let zombixPunch;
-let zombixKick;
-let zombixBlock;
-let zombixDamage;
-let zanIdle;
-let zanPunch;
-let zanKick;
-let zanBlock;
-let zanDamage;
 let bootTheme;
-let zombixel = {
-    "lifePoints" : 100,
-    "deck" :null,
-};
-let thanatalys = {
-    "lifePoints" : 100,
-    "deck" :null,
-};
-let zanersky = {
-    "lifePoints" : 100,
-    "deck" :null,
+let selectedCharacter;
+let IACharacter;
+let lifePoints;
+let confirmButton;
+let loose = false;
+let characters = {
+    0: "zombixel",
+    zombixel: {
+        lifepoint: 100,
+        deck: Deck.getExampleDeck()
+    },
+    1: "thanatalys",
+    thanatalys: {
+        lifepoint: 100,
+        deck: Deck.getExampleDeck()
+    },
+    2: "zanersky",
+    zanersky: {
+        lifepoint: 100,
+        deck: Deck.getExampleDeck()
+    }
 };
