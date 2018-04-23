@@ -30,6 +30,8 @@ let bootState = {
             "assets/pics/cards_spritesheet.png",
             { frameWidth: 64, frameHeight: 80 }
         );
+        this.load.spritesheet("lifebar", "assets/pics/lifebar.png",
+            { frameWidth: 100, frameHeight: 20});
     },
     create : function create () {
         // Création des animations
@@ -59,6 +61,17 @@ let bootState = {
                 frames: 5
             }
         ];
+        let lifebarState = [
+            {
+                key: "backLife",
+                frames: 0
+            },
+            {
+                key: "lifeStatus",
+                frames: 1
+            }
+        ];
+        setupSpritesheet(this, lifebarState, ['lifebar']);
 
         setupSpritesheet(this, animations, ['zombixel', 'zanersky', 'thanatalys']);
 
@@ -89,7 +102,7 @@ let bootState = {
             }
         ];
         setupSpritesheet(this, animations, ['cards']);
-  
+
         let backBoot = this.add.image(400,0,"white_background");
         backBoot.scaleX = 4;
         backBoot.scaleY = 4;

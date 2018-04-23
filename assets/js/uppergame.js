@@ -7,8 +7,8 @@ let uppergame = {
         this.playerHand = [];
         this.IAHand = [];
 
-        /** Le state va définir l'étape de jeu : 
-         * 
+        /** Le state va définir l'étape de jeu :
+         *
          *      - 0 : On pioche des cartes et on commence un nouveau tour
          *      - 1 : Les joueurs choississent les cartes à jouer
          *      - 2 : Les cartes sélectionnez sont retirées de la main et mise en zone d'action
@@ -22,6 +22,20 @@ let uppergame = {
         backgroundArena = this.add.image(400,130, "backgroundArena");
         backgroundArena.scaleX = 0.45;
         backgroundArena.scaleY = 0.35;
+        lifebarBackPlayer = this.add.sprite(screenWidth(0.10), screenHeight(0.415), 'lifebar');
+        lifebarBackPlayer.anims.play("lifebar-backLife");
+        lifebarBackIA = this.add.sprite(screenWidth(0.90), screenHeight(0.415), 'lifebar');
+        lifebarBackIA.anims.play("lifebar-backLife");
+        lifebarPlayer = this.add.sprite(screenWidth(0.10), screenHeight(0.415), 'lifebar');
+        lifebarPlayer.anims.play("lifebar-lifeStatus");
+        lifebarIA = this.add.sprite(screenWidth(0.90), screenHeight(0.415), 'lifebar');
+        lifebarIA.anims.play("lifebar-lifeStatus");
+
+        lifebarPlayer.displayOriginX = 0;
+        lifebarIA.displayOriginX = lifebarIA.displayWidth;
+        lifebarBackIA.displayOriginX = lifebarBackIA.displayWidth;
+        lifebarBackPlayer.displayOriginX = 0;
+
         playerCharacter = this.add.sprite(screenWidth(0.45), screenHeight(0.97), selectedCharacter);
         playerCharacter.displayOriginY = character.displayHeight;
         playerCharacter.anims.play(selectedCharacter +'-idle');
@@ -38,10 +52,7 @@ let uppergame = {
         IACharacter.scaleX = -1;
         IACharacter.displayOriginY = IACharacter.displayHeight;
         IACharacter.anims.play(randomCharacter + '-idle');
-        //HealthBar
-        // playerCharacter.lifePoints;
-        // IACharacter.lifePoints;
-        // playerCharacter.lifePoints = remainingPV;
+
 
         // Chargement des decks
         this.playerDeck = Deck.getCopyOf(characters[selectedCharacter].deck);
@@ -54,6 +65,7 @@ let uppergame = {
             // cardSprites[nbreCard] = this.add.sprite(34 + (55 * nbreCard), 42, 'cards' );
             // cardSprites[nbreCard].anims.play('cards-' + this.playerHand[nbreCard].name);
         }
+
         let cardSelected = [];
         console.log(this.playerHand);
 
@@ -63,8 +75,8 @@ let uppergame = {
 
     },
     update: function update () {
-        // healthBarIA.scaleX = (IACharacter.lifePoints * 0.01);
-        // healthBarPlayer.scaleX = (playerCharacter.lifePoints * 0.01);
+        lifebarIA.scaleX = (IACharacter.lifePoints * 0.01);
+        lifebarPlayer.scaleX = (selectedCharacter.lifePoints * 0.01);
 
         for(let i = 0; i < this.playerHand.length; i++){
             this.playerHand[i].update();
