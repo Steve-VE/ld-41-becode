@@ -31,7 +31,11 @@ let bootState = {
             { frameWidth: 64, frameHeight: 80 }
         );
         this.load.spritesheet("lifebar", "assets/pics/lifebar.png",
-            { frameWidth: 100, frameHeight: 20});
+            { frameWidth: 100, frameHeight: 20}
+        );
+        this.load.spritesheet("confirmAttack", "assets/pics/cardValidator-spritesheet.png",
+            {frameWidth: 60, frameHeight: 20}
+        );
     },
     create : function create () {
         // Création des animations
@@ -71,8 +75,18 @@ let bootState = {
                 frames: 1
             }
         ];
+        let confirmAttack = [
+            {
+                key: "buttonUp",
+                frames: 0
+            },
+            {
+                key: "buttonDown",
+                frames: 1
+            }
+        ];
         setupSpritesheet(this, lifebarState, ['lifebar']);
-
+        setupSpritesheet(this, confirmAttack, ['confirmAttack']);
         setupSpritesheet(this, animations, ['zombixel', 'zanersky', 'thanatalys']);
 
         animations = [

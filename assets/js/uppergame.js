@@ -63,10 +63,10 @@ let uppergame = {
         parent = this;
      
         
-        confirmButton = this.add.sprite(screenWidth(0.45), screenHeight(0.50), 'thanatalys').setInteractive();
-        confirmButton.anims.play('thanatalys-damage');
+        confirmButton = this.add.sprite(screenWidth(0.85), screenHeight(0.33), 'confirmAttack').setInteractive();
+        confirmButton.anims.play('confirmAttack-buttonUp');
         confirmButton.name = "confirmButton";
-        confirmButton.setTint("0xaaaaaa");
+        // confirmButton.setTint("0xaaaaaa");
 
         this.input.on('gameobjectdown', function (pointer, gameObject){
             if(gameObject.name == "confirmButton"){
